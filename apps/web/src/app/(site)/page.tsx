@@ -1,4 +1,4 @@
-import { sanity } from '@/lib/sanity.client'
+import { sanity } from '@/lib/sanity.server'
 import { tags } from '@/lib/revalidate'
 import {
     profileQuery, experiencesQuery, projectsQuery,
