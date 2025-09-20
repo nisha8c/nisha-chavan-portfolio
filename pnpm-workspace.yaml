@@ -1,0 +1,10 @@
+packages:
+  - "apps/*"
+  - "cms/*"
+#
+harmless
+if
+you
+ever
+use
+pnpm

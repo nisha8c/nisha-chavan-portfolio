@@ -1,0 +1,11 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "workspaces": ["apps/*", "cms/*"],
+  "scripts": {
+    "dev:web": "npm --workspace @portfolio/web run dev",
+    "build:web": "npm --workspace @portfolio/web run build",
+    "dev:cms": "npm --workspace @portfolio/sanity run dev",
+    "build:cms": "npm --workspace @portfolio/sanity run build"
+  }
+}
