@@ -30,7 +30,7 @@ export default async function Page() {
     ])
 
     return (
-        <div className="min-h-screen relative">
+        <div className="bg-gray-900 text-white min-h-screen relative">
             <FloatingParticles />
             <ScrollProgress />
             <NavigationDots />

@@ -2,19 +2,26 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
+type Particle = { id:number; x:number; y:number; size:number; duration:number }
+
 export default function FloatingParticles() {
-    const particles = React.useMemo(
-        () => Array.from({ length: 50 }, (_, i) => ({
+    const [particles, setParticles] = React.useState<Particle[] | null>(null)
+
+    React.useEffect(() => {
+        const list = Array.from({ length: 50 }, (_, i) => ({
             id: i,
             x: Math.random() * 100,
             y: Math.random() * 100,
             size: Math.random() * 4 + 1,
             duration: Math.random() * 20 + 10,
-        })),
-        []
-    )
+        }))
+        setParticles(list)
+    }, [])
+
+    if (!particles) return null
+
     return (
-        <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="fixed inset-0 pointer-events-none z-0" suppressHydrationWarning>
             {particles.map(p => (
                 <motion.div
                     key={p.id}

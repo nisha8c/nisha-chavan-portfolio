@@ -10,12 +10,9 @@ export default function EducationSection({ education = [] }: { education: Educat
     const inView = useInView(ref, { once: true, amount: 0.3 })
 
     const courses = [
-        'Advanced React Patterns - Kent C. Dodds',
-        'JavaScript Algorithms & Data Structures',
-        'Modern CSS & Sass Bootcamp',
-        'Node.js Complete Guide',
-        'AWS Certified Solutions Architect',
-        'UI/UX Design Fundamentals',
+        'Agile Project Management with Jira Cloud',
+        'SALT Bootcamp',
+        'AWS Cloud Practitioner - in progress'
     ]
 
     return (

@@ -3,8 +3,8 @@ import './globals.css'
 import React from "react";
 
 export const metadata: Metadata = {
-    title: 'Portfolio',
-    description: 'Portfolio site',
+    title: 'Nisha Chavan',
+    description: 'Portfolio',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
