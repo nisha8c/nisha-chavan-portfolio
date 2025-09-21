@@ -5,6 +5,9 @@ import React from "react";
 export const metadata: Metadata = {
     title: 'Nisha Chavan',
     description: 'Portfolio',
+    other: {
+        "google-site-verification": "JsxMf5ZFLXWgVgVTla1UrQdaJ3r9gsqrtG-pH_cZnPA",
+    },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
