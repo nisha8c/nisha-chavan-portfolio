@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'nisha-chavan-portfolio',
 
-  projectId: '0qq8l5wg',
-  dataset: 'production',
+  projectId: process.env.SANITY_PROJECT_ID!,
+  dataset: process.env.SANITY_DATASET!,
 
   plugins: [structureTool(), visionTool()],
 
