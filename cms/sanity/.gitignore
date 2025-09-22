@@ -27,3 +27,5 @@
 
 # Dotenv and similar local-only files
 *.local
+# env files (can opt-in for committing if needed)
+.env*
