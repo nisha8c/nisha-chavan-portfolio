@@ -4,8 +4,8 @@ export const profileQuery = groq`*[_type=="profile"][0]{
   name, title, bio, location, socials
 }`
 
-export const experiencesQuery = groq`*[_type=="experience"]|order(_createdAt asc){
-  company, position, duration, location, description, technologies, logo
+export const experiencesQuery = groq`*[_type=="experience"]|order(coalesce(order, 999) asc, _createdAt asc){
+  order, company, position, duration, location, description, technologies, logo
 }`
 
 export const projectsQuery = groq`*[_type=="project"]|order(_createdAt asc){

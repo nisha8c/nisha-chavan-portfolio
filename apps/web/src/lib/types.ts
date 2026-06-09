@@ -12,6 +12,7 @@ export type Profile = {
 }
 
 export type Experience = {
+    order?: number
     company: string
     position: string
     duration: string
