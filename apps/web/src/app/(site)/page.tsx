@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic'
 import { sanity } from '@/lib/sanity.server'
 import { tags } from '@/lib/revalidate'
 import {
@@ -7,13 +6,8 @@ import {
 } from '@/lib/queries'
 
 import DeferredChrome from '@/components/layout/DeferredChrome'
+import BelowFoldSections from '@/components/layout/BelowFoldSections'
 import HeroSection from '@/components/sections/HeroSection'
-
-const ExperienceSection = dynamic(() => import('@/components/sections/ExperienceSection'))
-const ProjectsSection = dynamic(() => import('@/components/sections/ProjectsSection'))
-const SkillsSection = dynamic(() => import('@/components/sections/SkillsSection'))
-const EducationSection = dynamic(() => import('@/components/sections/EducationSection'))
-const RecommendationsSection = dynamic(() => import('@/components/sections/RecommendationsSection'))
 
 export const revalidate = 60
 
@@ -33,11 +27,13 @@ export default async function Page() {
             <DeferredChrome />
             <main className="relative z-10">
                 <HeroSection profile={profile} />
-                <ExperienceSection experiences={experiences} />
-                <ProjectsSection projects={projects} />
-                <SkillsSection skills={skills} />
-                <EducationSection education={education} />
-                <RecommendationsSection recommendations={recommendations} />
+                <BelowFoldSections
+                    experiences={experiences}
+                    projects={projects}
+                    skills={skills}
+                    education={education}
+                    recommendations={recommendations}
+                />
             </main>
             <footer className="relative z-10 py-12 text-center border-t border-gray-200 dark:border-gray-800">
                 <div className="max-w-4xl mx-auto px-6">

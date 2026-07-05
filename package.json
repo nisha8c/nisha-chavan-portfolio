@@ -2,6 +2,12 @@
   "name": "portfolio",
   "private": true,
   "workspaces": ["apps/*", "cms/*"],
+  "browserslist": [
+    "chrome >= 92",
+    "firefox >= 90",
+    "safari >= 15",
+    "edge >= 92"
+  ],
   "scripts": {
     "dev:web": "npm --workspace @portfolio/web run dev",
     "build:web": "npm --workspace @portfolio/web run build",

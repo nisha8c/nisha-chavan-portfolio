@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import React from 'react'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
+import MotionProvider from '@/components/layout/MotionProvider'
 
 export const metadata: Metadata = {
     title: 'Nisha Chavan',
@@ -26,10 +27,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
         <head>
+            <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://cdn.sanity.io" />
             <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         </head>
         <body className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
-            <ThemeProvider>{children}</ThemeProvider>
+            <ThemeProvider>
+                <MotionProvider>{children}</MotionProvider>
+            </ThemeProvider>
         </body>
         </html>
     )
