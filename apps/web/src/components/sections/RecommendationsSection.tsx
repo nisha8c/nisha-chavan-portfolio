@@ -11,7 +11,7 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
     const [idx, setIdx] = useState(0)
 
     useEffect(() => {
-        const t = setInterval(() => setIdx(p => (p + 1) % recommendations.length), 5000)
+        const t = setInterval(() => setIdx(p => (p + 1) % recommendations.length), 10000)
         return () => clearInterval(t)
     }, [recommendations.length])
 
