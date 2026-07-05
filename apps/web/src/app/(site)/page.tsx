@@ -5,11 +5,7 @@ import {
     skillsQuery, educationQuery, recommendationsQuery, settingsQuery
 } from '@/lib/queries'
 
-import FloatingParticles from '@/components/animations/FloatingParticles'
-import ScrollProgress from '@/components/animations/ScrollProgress'
-import NavigationDots from '@/components/navigation/NavigationDots'
-import ThemeToggle from '@/components/theme/ThemeToggle'
-
+import DeferredChrome from '@/components/layout/DeferredChrome'
 import HeroSection from '@/components/sections/HeroSection'
 import ExperienceSection from '@/components/sections/ExperienceSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
@@ -32,10 +28,7 @@ export default async function Page() {
 
     return (
         <div className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white min-h-screen relative transition-colors duration-300">
-            <FloatingParticles />
-            <ScrollProgress />
-            <ThemeToggle />
-            <NavigationDots />
+            <DeferredChrome />
             <div className="relative z-10">
                 <HeroSection profile={profile} />
                 <ExperienceSection experiences={experiences} />
@@ -48,7 +41,7 @@ export default async function Page() {
                         <p className="text-gray-600 dark:text-gray-400 mb-4">
                             © {new Date().getFullYear()} {profile?.name}. Built with Next.js, Tailwind CSS, and Framer Motion.
                         </p>
-                        <p className="text-sm text-gray-500 dark:text-gray-500">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
                             {settings?.footerText ?? 'Always learning, always building, always growing. 🚀'}
                         </p>
                     </div>

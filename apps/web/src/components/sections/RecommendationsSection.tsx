@@ -34,7 +34,7 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                             <motion.div key={idx} initial={{ opacity: 0, x: 100, rotateY: -90 }} animate={{ opacity: 1, x: 0, rotateY: 0 }}
                                         exit={{ opacity: 0, x: -100, rotateY: 90 }} transition={{ duration: 0.8, type: 'spring' }}
                                         className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 md:p-12 relative">
-                                <motion.div className="absolute top-8 left-8 text-blue-400 opacity-20" animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }} transition={{ duration: 4, repeat: Infinity }}>
+                                <motion.div className="absolute top-8 left-8 text-blue-400 opacity-20" aria-hidden="true" animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }} transition={{ duration: 4, repeat: Infinity }}>
                                     <Quote className="w-16 h-16" />
                                 </motion.div>
 
@@ -50,6 +50,7 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                                                 />
                                             )}
                                             <motion.div className="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-2 border-gray-50 dark:border-gray-800"
+                                                        aria-hidden="true"
                                                         animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
                                         </div>
                                     </motion.div>
@@ -61,14 +62,14 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                                         </motion.p>
 
                                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
-                                            <div className="flex justify-center md:justify-start gap-1 mb-3">
+                                            <div className="flex justify-center md:justify-start gap-1 mb-3" aria-label={`${item?.rating ?? 0} out of 5 stars`}>
                                                 {Array.from({ length: item?.rating ?? 0 }).map((_, i) => (
                                                     <motion.div key={i} initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.6 + i * 0.1, type: 'spring' }}>
-                                                        <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                                                        <Star aria-hidden="true" className="w-5 h-5 text-yellow-400 fill-current" />
                                                     </motion.div>
                                                 ))}
                                             </div>
-                                            <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{item?.name}</h4>
+                                            <p className="text-xl font-bold text-gray-900 dark:text-white mb-1">{item?.name}</p>
                                             <p className="text-blue-400 font-medium">{item?.position}</p>
                                             <p className="text-gray-600 dark:text-gray-400 text-sm">{item?.company}</p>
                                         </motion.div>
@@ -78,21 +79,28 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                         </AnimatePresence>
                     </motion.div>
 
-                    <div className="flex justify-center gap-4 mt-8">
-                        <motion.button onClick={prev} className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300"
+                    <div className="flex justify-center items-center gap-4 mt-8">
+                        <motion.button type="button" onClick={prev} aria-label="Previous testimonial"
+                                       className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300"
                                        whileHover={{ scale: 1.1, backgroundColor: 'rgba(59,130,246,0.1)' }} whileTap={{ scale: 0.9 }}>
-                            <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-blue-400" />
+                            <ChevronLeft aria-hidden="true" className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-blue-400" />
                         </motion.button>
-                        <div className="flex items-center gap-2">
-                            {recommendations.map((_, i) => (
-                                <motion.button key={i} onClick={() => setIdx(i)}
-                                               className={`w-3 h-3 rounded-full transition-all duration-300 ${i === idx ? 'bg-blue-500 scale-125' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
-                                               whileHover={{ scale: 1.3 }} whileTap={{ scale: 0.9 }} />
+                        <div className="flex items-center gap-2" role="tablist" aria-label="Testimonials">
+                            {recommendations.map((rec, i) => (
+                                <motion.button key={i} type="button" onClick={() => setIdx(i)}
+                                               role="tab"
+                                               aria-selected={i === idx}
+                                               aria-label={`Show testimonial from ${rec.name}`}
+                                               className="min-w-11 min-h-11 flex items-center justify-center"
+                                               whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                                    <span className={`block w-3 h-3 rounded-full transition-all duration-300 ${i === idx ? 'bg-blue-500 scale-125' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`} aria-hidden="true" />
+                                </motion.button>
                             ))}
                         </div>
-                        <motion.button onClick={next} className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300"
+                        <motion.button type="button" onClick={next} aria-label="Next testimonial"
+                                       className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300"
                                        whileHover={{ scale: 1.1, backgroundColor: 'rgba(59,130,246,0.1)' }} whileTap={{ scale: 0.9 }}>
-                            <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-blue-400" />
+                            <ChevronRight aria-hidden="true" className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-blue-400" />
                         </motion.button>
                     </div>
                 </div>

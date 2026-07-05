@@ -53,13 +53,22 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
                                             loading="lazy"
                                         />
                                     )}
-                                    <motion.div className="absolute inset-0 bg-gradient-to-t from-gray-100 dark:from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                                    <motion.div className="absolute inset-0 bg-gradient-to-t from-gray-100 dark:from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
                                                 whileHover={{ opacity: 1 }}>
                                         {project.githubUrl && (
                                             <motion.a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                                                      aria-label={`View ${project.title} on GitHub`}
                                                       className="w-12 h-12 bg-black/80 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-sm"
                                                       whileHover={{ scale: 1.1, backgroundColor: 'rgba(59,130,246,0.8)' }} whileTap={{ scale: 0.9 }}>
-                                                <Github className="w-5 h-5 text-white" />
+                                                <Github aria-hidden="true" className="w-5 h-5 text-white" />
+                                            </motion.a>
+                                        )}
+                                        {project.demoUrl && (
+                                            <motion.a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
+                                                      aria-label={`View live demo of ${project.title}`}
+                                                      className="w-12 h-12 bg-black/80 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-sm text-white text-xs font-semibold"
+                                                      whileHover={{ scale: 1.1, backgroundColor: 'rgba(59,130,246,0.8)' }} whileTap={{ scale: 0.9 }}>
+                                                Demo
                                             </motion.a>
                                         )}
                                     </motion.div>
