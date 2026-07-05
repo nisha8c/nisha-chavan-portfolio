@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import type { Skill } from '@/lib/types'
-import { urlFor } from '@/lib/imageBuilder'
+import { mediumLogoUrl } from '@/lib/imageBuilder'
 
 const categories = [
     { name: 'Frontend', key: 'frontend', color: 'from-blue-400 to-cyan-400' },
@@ -48,7 +48,7 @@ export default function SkillsSection({ skills = [] }: { skills: Skill[] }) {
                                             <motion.div className="w-16 h-16 mx-auto mb-4 relative" animate={{ rotateY: [0, 360] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
                                                 {skill.logo && (
                                                     <img
-                                                        src={urlFor(skill.logo).width(64).height(64).fit('crop').dpr(2).url()}
+                                                        src={mediumLogoUrl(skill.logo)}
                                                         alt={skill.name} className="w-full h-full object-contain"
                                                         loading="lazy"
                                                     />

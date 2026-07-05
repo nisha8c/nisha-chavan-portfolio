@@ -3,7 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Github, Code, Smartphone, Monitor } from 'lucide-react'
 import type { Project } from '@/lib/types'
-import { urlFor } from '@/lib/imageBuilder'
+import { projectImageUrl } from '@/lib/imageBuilder'
 
 const tabs = [
     { id: 'all', label: 'All Projects', icon: Code },
@@ -48,7 +48,7 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
                                 <div className="relative overflow-hidden">
                                     {project.image && (
                                         <img
-                                            src={urlFor(project.image).width(800).height(400).fit('crop').dpr(2).url()}
+                                            src={projectImageUrl(project.image)}
                                             alt={project.title} className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                                             loading="lazy"
                                         />

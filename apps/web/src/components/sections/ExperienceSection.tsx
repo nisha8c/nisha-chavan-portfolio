@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Calendar, MapPin } from 'lucide-react'
 import type { Experience } from '@/lib/types'
-import { urlFor } from '@/lib/imageBuilder'
+import { logoUrl } from '@/lib/imageBuilder'
 
 export default function ExperienceSection({ experiences }: { experiences: Experience[] }) {
 
@@ -36,7 +36,7 @@ export default function ExperienceSection({ experiences }: { experiences: Experi
                                     <div className="flex items-center gap-4 mb-4">
                                         {exp.logo && (
                                             <img
-                                                src={urlFor(exp.logo).width(64).height(64).fit('crop').dpr(2).url()}
+                                                src={logoUrl(exp.logo)}
                                                 alt={exp.company} className="w-12 h-12 rounded-lg object-cover"
                                             />
                                         )}

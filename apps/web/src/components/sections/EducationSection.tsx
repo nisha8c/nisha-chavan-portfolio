@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { GraduationCap, Award, Calendar, BookOpen } from 'lucide-react'
 import type { Education } from '@/lib/types'
-import { urlFor } from '@/lib/imageBuilder'
+import { mediumLogoUrl } from '@/lib/imageBuilder'
 
 export default function EducationSection({ education = [] }: { education: Education[] }) {
     const ref = useRef(null)
@@ -42,7 +42,7 @@ export default function EducationSection({ education = [] }: { education: Educat
                                     <div className="flex items-center gap-4 mb-4">
                                         {edu.logo && (
                                             <motion.img
-                                                src={urlFor(edu.logo).width(64).height(64).fit('crop').dpr(2).url()}
+                                                src={mediumLogoUrl(edu.logo)}
                                                 alt={edu.institution} className="w-16 h-16 rounded-lg object-cover"
                                                 whileHover={{ rotate: 360 }} transition={{ duration: 1 }}
                                             />

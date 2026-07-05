@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { sanity } from '@/lib/sanity.server'
 import { tags } from '@/lib/revalidate'
 import {
@@ -7,11 +8,12 @@ import {
 
 import DeferredChrome from '@/components/layout/DeferredChrome'
 import HeroSection from '@/components/sections/HeroSection'
-import ExperienceSection from '@/components/sections/ExperienceSection'
-import ProjectsSection from '@/components/sections/ProjectsSection'
-import SkillsSection from '@/components/sections/SkillsSection'
-import EducationSection from '@/components/sections/EducationSection'
-import RecommendationsSection from '@/components/sections/RecommendationsSection'
+
+const ExperienceSection = dynamic(() => import('@/components/sections/ExperienceSection'))
+const ProjectsSection = dynamic(() => import('@/components/sections/ProjectsSection'))
+const SkillsSection = dynamic(() => import('@/components/sections/SkillsSection'))
+const EducationSection = dynamic(() => import('@/components/sections/EducationSection'))
+const RecommendationsSection = dynamic(() => import('@/components/sections/RecommendationsSection'))
 
 export const revalidate = 60
 
@@ -29,24 +31,24 @@ export default async function Page() {
     return (
         <div className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white min-h-screen relative transition-colors duration-300">
             <DeferredChrome />
-            <div className="relative z-10">
+            <main className="relative z-10">
                 <HeroSection profile={profile} />
                 <ExperienceSection experiences={experiences} />
                 <ProjectsSection projects={projects} />
                 <SkillsSection skills={skills} />
                 <EducationSection education={education} />
                 <RecommendationsSection recommendations={recommendations} />
-                <footer className="py-12 text-center border-t border-gray-200 dark:border-gray-800">
-                    <div className="max-w-4xl mx-auto px-6">
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            © {new Date().getFullYear()} {profile?.name}. Built with Next.js, Tailwind CSS, and Framer Motion.
-                        </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {settings?.footerText ?? 'Always learning, always building, always growing. 🚀'}
-                        </p>
-                    </div>
-                </footer>
-            </div>
+            </main>
+            <footer className="relative z-10 py-12 text-center border-t border-gray-200 dark:border-gray-800">
+                <div className="max-w-4xl mx-auto px-6">
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                        © {new Date().getFullYear()} {profile?.name}. Built with Next.js, Tailwind CSS, and Framer Motion.
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {settings?.footerText ?? 'Always learning, always building, always growing. 🚀'}
+                    </p>
+                </div>
+            </footer>
         </div>
     )
 }

@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import type { Recommendation } from '@/lib/types'
-import { urlFor } from '@/lib/imageBuilder'
+import { avatarUrl } from '@/lib/imageBuilder'
 
 export default function RecommendationsSection({ recommendations = [] }: { recommendations: Recommendation[] }) {
     const ref = useRef(null)
@@ -43,7 +43,7 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                                         <div className="relative">
                                             {item?.avatar && (
                                                 <motion.img
-                                                    src={urlFor(item.avatar).width(96).height(96).fit('crop').dpr(2).url()}
+                                                    src={avatarUrl(item.avatar)}
                                                     alt={item.name} className="w-24 h-24 rounded-full object-cover border-4 border-blue-500/50"
                                                     animate={{ boxShadow: ['0 0 0 rgba(59,130,246,0)', '0 0 20px rgba(59,130,246,0.3)', '0 0 0 rgba(59,130,246,0)'] }}
                                                     transition={{ duration: 2, repeat: Infinity }}
@@ -62,13 +62,14 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                                         </motion.p>
 
                                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
-                                            <div className="flex justify-center md:justify-start gap-1 mb-3" aria-label={`${item?.rating ?? 0} out of 5 stars`}>
+                                            <p className="flex justify-center md:justify-start gap-1 mb-3">
+                                                <span className="sr-only">{item?.rating ?? 0} out of 5 stars</span>
                                                 {Array.from({ length: item?.rating ?? 0 }).map((_, i) => (
-                                                    <motion.div key={i} initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.6 + i * 0.1, type: 'spring' }}>
-                                                        <Star aria-hidden="true" className="w-5 h-5 text-yellow-400 fill-current" />
-                                                    </motion.div>
+                                                    <motion.span key={i} aria-hidden="true" initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.6 + i * 0.1, type: 'spring' }}>
+                                                        <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                                                    </motion.span>
                                                 ))}
-                                            </div>
+                                            </p>
                                             <p className="text-xl font-bold text-gray-900 dark:text-white mb-1">{item?.name}</p>
                                             <p className="text-blue-400 font-medium">{item?.position}</p>
                                             <p className="text-gray-600 dark:text-gray-400 text-sm">{item?.company}</p>
