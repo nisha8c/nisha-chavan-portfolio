@@ -8,6 +8,7 @@ import {
 import FloatingParticles from '@/components/animations/FloatingParticles'
 import ScrollProgress from '@/components/animations/ScrollProgress'
 import NavigationDots from '@/components/navigation/NavigationDots'
+import ThemeToggle from '@/components/theme/ThemeToggle'
 
 import HeroSection from '@/components/sections/HeroSection'
 import ExperienceSection from '@/components/sections/ExperienceSection'
@@ -30,9 +31,10 @@ export default async function Page() {
     ])
 
     return (
-        <div className="bg-gray-900 text-white min-h-screen relative">
+        <div className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white min-h-screen relative transition-colors duration-300">
             <FloatingParticles />
             <ScrollProgress />
+            <ThemeToggle />
             <NavigationDots />
             <div className="relative z-10">
                 <HeroSection profile={profile} />
@@ -41,12 +43,12 @@ export default async function Page() {
                 <SkillsSection skills={skills} />
                 <EducationSection education={education} />
                 <RecommendationsSection recommendations={recommendations} />
-                <footer className="py-12 text-center border-t border-gray-800">
+                <footer className="py-12 text-center border-t border-gray-200 dark:border-gray-800">
                     <div className="max-w-4xl mx-auto px-6">
-                        <p className="text-gray-400 mb-4">
+                        <p className="text-gray-600 dark:text-gray-400 mb-4">
                             © {new Date().getFullYear()} {profile?.name}. Built with Next.js, Tailwind CSS, and Framer Motion.
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-500 dark:text-gray-500">
                             {settings?.footerText ?? 'Always learning, always building, always growing. 🚀'}
                         </p>
                     </div>

@@ -39,11 +39,11 @@ export default function HeroSection({ profile }: { profile: Profile }) {
                 >
                     {profile?.name}
                 </motion.h1>
-                <div className="text-2xl md:text-4xl text-gray-300 mb-6 h-12">
+                <div className="text-2xl md:text-4xl text-gray-700 dark:text-gray-300 mb-6 h-12">
                     {text}<span className={cursor ? 'opacity-100' : 'opacity-0'}>|</span>
                 </div>
                 <motion.p
-                    className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed"
+                    className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed"
                     initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8 }}
                 >
                     {profile?.bio}
@@ -54,14 +54,14 @@ export default function HeroSection({ profile }: { profile: Profile }) {
                 >
                     {(profile?.socials ?? []).map((s) => (
                         <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
-                           className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center border border-gray-700 hover:border-blue-500 transition-all duration-300">
-                            {s.label.toLowerCase().includes('github') ? <Github className="w-5 h-5 text-gray-400" /> :
-                                s.label.toLowerCase().includes('linkedin') ? <Linkedin className="w-5 h-5 text-gray-400" /> :
-                                    <Mail className="w-5 h-5 text-gray-400" />}
+                           className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300">
+                            {s.label.toLowerCase().includes('github') ? <Github className="w-5 h-5 text-gray-600 dark:text-gray-400" /> :
+                                s.label.toLowerCase().includes('linkedin') ? <Linkedin className="w-5 h-5 text-gray-600 dark:text-gray-400" /> :
+                                    <Mail className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
                         </a>
                     ))}
                 </motion.div>
-                <motion.div className="flex items-center justify-center gap-2 text-gray-400" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
+                <motion.div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
                     <MapPin className="w-4 h-4" />
                     <span>{profile?.location}</span>
                 </motion.div>

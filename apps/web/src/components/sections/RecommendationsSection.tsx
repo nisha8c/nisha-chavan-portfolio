@@ -25,7 +25,7 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
             <div className="max-w-6xl mx-auto px-6">
                 <motion.div initial={{ opacity: 0, y: 50 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">What People Say</h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">Testimonials from colleagues and collaborators</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">Testimonials from colleagues and collaborators</p>
                 </motion.div>
 
                 <div className="relative">
@@ -33,7 +33,7 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                         <AnimatePresence mode="wait">
                             <motion.div key={idx} initial={{ opacity: 0, x: 100, rotateY: -90 }} animate={{ opacity: 1, x: 0, rotateY: 0 }}
                                         exit={{ opacity: 0, x: -100, rotateY: 90 }} transition={{ duration: 0.8, type: 'spring' }}
-                                        className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 md:p-12 relative">
+                                        className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 md:p-12 relative">
                                 <motion.div className="absolute top-8 left-8 text-blue-400 opacity-20" animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }} transition={{ duration: 4, repeat: Infinity }}>
                                     <Quote className="w-16 h-16" />
                                 </motion.div>
@@ -49,13 +49,13 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                                                     transition={{ duration: 2, repeat: Infinity }}
                                                 />
                                             )}
-                                            <motion.div className="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-2 border-gray-800"
+                                            <motion.div className="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-2 border-gray-50 dark:border-gray-800"
                                                         animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
                                         </div>
                                     </motion.div>
 
                                     <div className="flex-1 text-center md:text-left">
-                                        <motion.p className="text-gray-300 text-lg leading-relaxed mb-6 italic"
+                                        <motion.p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6 italic"
                                                   initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
                                             “{item?.text}”
                                         </motion.p>
@@ -68,9 +68,9 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                                                     </motion.div>
                                                 ))}
                                             </div>
-                                            <h4 className="text-xl font-bold text-white mb-1">{item?.name}</h4>
+                                            <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{item?.name}</h4>
                                             <p className="text-blue-400 font-medium">{item?.position}</p>
-                                            <p className="text-gray-400 text-sm">{item?.company}</p>
+                                            <p className="text-gray-600 dark:text-gray-400 text-sm">{item?.company}</p>
                                         </motion.div>
                                     </div>
                                 </div>
@@ -79,20 +79,20 @@ export default function RecommendationsSection({ recommendations = [] }: { recom
                     </motion.div>
 
                     <div className="flex justify-center gap-4 mt-8">
-                        <motion.button onClick={prev} className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center border border-gray-700 hover:border-blue-500 transition-all duration-300"
+                        <motion.button onClick={prev} className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300"
                                        whileHover={{ scale: 1.1, backgroundColor: 'rgba(59,130,246,0.1)' }} whileTap={{ scale: 0.9 }}>
-                            <ChevronLeft className="w-5 h-5 text-gray-400 hover:text-blue-400" />
+                            <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-blue-400" />
                         </motion.button>
                         <div className="flex items-center gap-2">
                             {recommendations.map((_, i) => (
                                 <motion.button key={i} onClick={() => setIdx(i)}
-                                               className={`w-3 h-3 rounded-full transition-all duration-300 ${i === idx ? 'bg-blue-500 scale-125' : 'bg-gray-600 hover:bg-gray-500'}`}
+                                               className={`w-3 h-3 rounded-full transition-all duration-300 ${i === idx ? 'bg-blue-500 scale-125' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
                                                whileHover={{ scale: 1.3 }} whileTap={{ scale: 0.9 }} />
                             ))}
                         </div>
-                        <motion.button onClick={next} className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center border border-gray-700 hover:border-blue-500 transition-all duration-300"
+                        <motion.button onClick={next} className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300"
                                        whileHover={{ scale: 1.1, backgroundColor: 'rgba(59,130,246,0.1)' }} whileTap={{ scale: 0.9 }}>
-                            <ChevronRight className="w-5 h-5 text-gray-400 hover:text-blue-400" />
+                            <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-blue-400" />
                         </motion.button>
                     </div>
                 </div>

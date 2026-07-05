@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import React from "react";
+import React from 'react'
+import { ThemeProvider } from '@/components/theme/ThemeProvider'
 
 export const metadata: Metadata = {
     title: 'Nisha Chavan',
@@ -10,10 +11,26 @@ export const metadata: Metadata = {
     },
 }
 
+const themeScript = `
+(function () {
+  try {
+    var theme = localStorage.getItem('theme')
+    document.documentElement.classList.toggle('dark', theme !== 'light')
+  } catch (e) {
+    document.documentElement.classList.add('dark')
+  }
+})()
+`
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-        <body className="bg-gray-900 text-white">{children}</body>
+        <html lang="en" className="dark" suppressHydrationWarning>
+        <head>
+            <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        </head>
+        <body className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+            <ThemeProvider>{children}</ThemeProvider>
+        </body>
         </html>
     )
 }

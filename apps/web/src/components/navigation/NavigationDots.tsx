@@ -45,7 +45,7 @@ export default function NavigationDots() {
                     whileHover={{ scale: 1.3 }}
                     whileTap={{ scale: 0.9 }}
                 >
-          <span className="absolute right-6 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          <span className="absolute right-6 top-1/2 -translate-y-1/2 bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-200 dark:border-gray-700">
             {s.label}
           </span>
                 </motion.button>

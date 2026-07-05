@@ -25,7 +25,7 @@ export default function FloatingParticles() {
             {particles.map(p => (
                 <motion.div
                     key={p.id}
-                    className="absolute bg-blue-400 rounded-full opacity-20"
+                    className="absolute bg-blue-500 dark:bg-blue-400 rounded-full opacity-20"
                     style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
                     animate={{ y: [0, -30, 0], x: [0, 15, -15, 0], opacity: [0.1, 0.3, 0.1] }}
                     transition={{ duration: p.duration, repeat: Infinity, ease: 'easeInOut' }}

@@ -23,15 +23,15 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
             <div className="max-w-7xl mx-auto px-6">
                 <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8 }} className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">Featured Projects</h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">A collection of hobby-level applications I have built to explore new technologies</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">A collection of hobby-level applications I have built to explore new technologies</p>
                 </motion.div>
 
                 <motion.div className="flex justify-center mb-12" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: 0.3, duration: 0.8 }}>
-                    <div className="bg-gray-800/50 backdrop-blur-sm rounded-full p-2 border border-gray-700">
+                    <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-full p-2 border border-gray-200 dark:border-gray-700">
                         {tabs.map(t => (
                             <motion.button key={t.id} onClick={() => setActive(t.id)}
                                            className={`px-6 py-3 rounded-full flex items-center gap-2 transition-all duration-300 ${
-                                               active === t.id ? 'bg-blue-500 text-white shadow-lg' : 'text-gray-400 hover:text-white'
+                                               active === t.id ? 'bg-blue-500 text-white shadow-lg' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                            }`}
                                            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                 <t.icon className="w-4 h-4" /> {t.label}
@@ -44,7 +44,7 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
                     {filtered.map((project, index) => (
                         <motion.div key={`${project.title}-${index}`} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.1 + 0.2, duration: 0.8 }} className="group relative">
-                            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-500">
+                            <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-500">
                                 <div className="relative overflow-hidden">
                                     {project.image && (
                                         <img
@@ -53,7 +53,7 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
                                             loading="lazy"
                                         />
                                     )}
-                                    <motion.div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                                    <motion.div className="absolute inset-0 bg-gradient-to-t from-gray-100 dark:from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                                                 whileHover={{ opacity: 1 }}>
                                         {project.githubUrl && (
                                             <motion.a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
@@ -67,7 +67,7 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
 
                                 <div className="p-6">
                                     <div className="flex items-center justify-between mb-3">
-                                        <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-400 transition-colors">{project.title}</h3>
                                         {project.featured && (
                                             <motion.span className="px-2 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs rounded-full font-medium"
                                                          animate={{ boxShadow: ['0 0 0 rgba(255, 193, 7, 0)', '0 0 20px rgba(255, 193, 7, 0.3)', '0 0 0 rgba(255, 193, 7, 0)'] }}
@@ -76,7 +76,7 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
                                             </motion.span>
                                         )}
                                     </div>
-                                    <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.description}</p>
+                                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">{project.description}</p>
                                     <div className="flex flex-wrap gap-2">
                                         {(project.technologies ?? []).map((tech, t) => (
                                             <motion.span key={`${tech}-${t}`} className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded text-xs border border-blue-500/30"
@@ -92,7 +92,7 @@ export default function ProjectsSection({ projects = [] }: { projects: Project[]
                 </div>
 
                 {!filtered.length && (
-                    <p className="text-center text-gray-400">No projects in this category yet.</p>
+                    <p className="text-center text-gray-600 dark:text-gray-400">No projects in this category yet.</p>
                 )}
             </div>
         </section>

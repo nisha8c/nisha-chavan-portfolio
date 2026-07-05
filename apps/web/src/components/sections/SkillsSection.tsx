@@ -23,7 +23,7 @@ export default function SkillsSection({ skills = [] }: { skills: Skill[] }) {
                     <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
                         Skills & Technologies
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">Technologies I work with to bring ideas to life</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">Technologies I work with to bring ideas to life</p>
                 </motion.div>
 
                 {categories.map((cat, i) => {
@@ -44,7 +44,7 @@ export default function SkillsSection({ skills = [] }: { skills: Skill[] }) {
                                     <motion.div key={skill.name} className="group relative"
                                                 initial={{ opacity: 0, y: 50, rotate: -10 }} animate={inView ? { opacity: 1, y: 0, rotate: 0 } : {}}
                                                 transition={{ delay: i * 0.2 + sidx * 0.1, duration: 0.8, type: 'spring' }} whileHover={{ scale: 1.1, rotate: 5, y: -10 }}>
-                                        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 text-center hover:border-blue-500/50 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-blue-500/20">
+                                        <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl p-6 text-center hover:border-blue-500/50 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-blue-500/20">
                                             <motion.div className="w-16 h-16 mx-auto mb-4 relative" animate={{ rotateY: [0, 360] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
                                                 {skill.logo && (
                                                     <img
@@ -54,13 +54,13 @@ export default function SkillsSection({ skills = [] }: { skills: Skill[] }) {
                                                     />
                                                 )}
                                             </motion.div>
-                                            <h4 className="text-white font-semibold mb-2 group-hover:text-blue-400 transition-colors">{skill.name}</h4>
-                                            <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                                            <h4 className="text-gray-900 dark:text-white font-semibold mb-2 group-hover:text-blue-400 transition-colors">{skill.name}</h4>
+                                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
                                                 <motion.div className={`h-full bg-gradient-to-r ${cat.color} rounded-full`}
                                                             initial={{ width: 0 }} animate={inView ? { width: `${skill.proficiency}%` } : { width: 0 }}
                                                             transition={{ delay: i * 0.2 + sidx * 0.1 + 0.5, duration: 1.5, ease: 'easeOut' }} />
                                             </div>
-                                            <div className="text-xs text-gray-400">
+                                            <div className="text-xs text-gray-600 dark:text-gray-400">
                                                 <div>{skill.proficiency}%</div>
                                                 <div>{skill.yearsExperience} years</div>
                                             </div>
