@@ -12,6 +12,10 @@ export const projectsQuery = groq`*[_type=="project"]|order(_createdAt asc){
   title, description, category, technologies, githubUrl, demoUrl, image, featured
 }`
 
+export const sideProjectsQuery = groq`*[_type=="sideProject"]|order(coalesce(order, 999) asc, _createdAt asc){
+  order, title, role, badge, location, duration, description, highlights, technologies, websiteUrl, websiteLabel, logo
+}`
+
 export const skillsQuery = groq`*[_type=="skill"]|order(_createdAt asc){
   name, category, proficiency, yearsExperience, logo
 }`

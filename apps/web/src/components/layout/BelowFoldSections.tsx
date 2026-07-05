@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, type ComponentType } from 'react'
-import type { Education, Experience, Project, Recommendation, Skill } from '@/lib/types'
+import type { Education, Experience, Project, Recommendation, SideProject, Skill } from '@/lib/types'
 
 function createDeferredSection<P extends object>(
     loader: () => Promise<{ default: ComponentType<P> }>,
@@ -47,6 +47,11 @@ const DeferredProjects = createDeferredSection<{ projects: Project[] }>(
     '80vh',
 )
 
+const DeferredSideProjects = createDeferredSection<{ sideProjects: SideProject[] }>(
+    () => import('@/components/sections/SideProjectsSection'),
+    '70vh',
+)
+
 const DeferredSkills = createDeferredSection<{ skills: Skill[] }>(
     () => import('@/components/sections/SkillsSection'),
     '60vh',
@@ -65,6 +70,7 @@ const DeferredRecommendations = createDeferredSection<{ recommendations: Recomme
 type BelowFoldSectionsProps = {
     experiences: Experience[]
     projects: Project[]
+    sideProjects: SideProject[]
     skills: Skill[]
     education: Education[]
     recommendations: Recommendation[]
@@ -73,6 +79,7 @@ type BelowFoldSectionsProps = {
 export default function BelowFoldSections({
     experiences,
     projects,
+    sideProjects,
     skills,
     education,
     recommendations,
@@ -81,6 +88,7 @@ export default function BelowFoldSections({
         <>
             <DeferredExperience experiences={experiences} />
             <DeferredProjects projects={projects} />
+            <DeferredSideProjects sideProjects={sideProjects} />
             <DeferredSkills skills={skills} />
             <DeferredEducation education={education} />
             <DeferredRecommendations recommendations={recommendations} />

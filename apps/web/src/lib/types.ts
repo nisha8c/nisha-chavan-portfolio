@@ -58,6 +58,21 @@ export type Recommendation = {
     avatar?: SanityImage // Sanity image
 }
 
+export type SideProject = {
+    order?: number
+    title: string
+    role: string
+    badge?: string
+    location?: string
+    duration?: string
+    description: string
+    highlights?: string[]
+    technologies?: string[]
+    websiteUrl?: string
+    websiteLabel?: string
+    logo?: SanityImage
+}
+
 export type SiteSettings = {
     siteTitle?: string
     tagline?: string

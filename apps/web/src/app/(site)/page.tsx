@@ -1,7 +1,7 @@
 import { sanity } from '@/lib/sanity.server'
 import { tags } from '@/lib/revalidate'
 import {
-    profileQuery, experiencesQuery, projectsQuery,
+    profileQuery, experiencesQuery, projectsQuery, sideProjectsQuery,
     skillsQuery, educationQuery, recommendationsQuery, settingsQuery
 } from '@/lib/queries'
 
@@ -12,10 +12,11 @@ import HeroSection from '@/components/sections/HeroSection'
 export const revalidate = 60
 
 export default async function Page() {
-    const [profile, experiences, projects, skills, education, recommendations, settings] = await Promise.all([
+    const [profile, experiences, projects, sideProjects, skills, education, recommendations, settings] = await Promise.all([
         sanity.fetch(profileQuery, {}, { next: { revalidate, tags: [tags.profile] } }),
         sanity.fetch(experiencesQuery, {}, { next: { revalidate, tags: [tags.experience] } }),
         sanity.fetch(projectsQuery, {}, { next: { revalidate, tags: [tags.projects] } }),
+        sanity.fetch(sideProjectsQuery, {}, { next: { revalidate, tags: [tags.sideProjects] } }),
         sanity.fetch(skillsQuery, {}, { next: { revalidate, tags: [tags.skills] } }),
         sanity.fetch(educationQuery, {}, { next: { revalidate, tags: [tags.education] } }),
         sanity.fetch(recommendationsQuery, {}, { next: { revalidate, tags: [tags.recommendations] } }),
@@ -30,6 +31,7 @@ export default async function Page() {
                 <BelowFoldSections
                     experiences={experiences}
                     projects={projects}
+                    sideProjects={sideProjects}
                     skills={skills}
                     education={education}
                     recommendations={recommendations}
